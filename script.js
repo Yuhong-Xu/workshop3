@@ -42,11 +42,16 @@ function setup() {
 });
 
 let model = ml5.faceMesh(options, modelLoaded);
+// I don't need faceMesh, i need handTracking
 
 function modelLoaded() {
   // Model is ready - safe to start detection
   model.detectStart(cam.videoElement, gotResults);
 }
+
+// // Those things above are basic setup for camera and model loading
+
+
 
 
 
