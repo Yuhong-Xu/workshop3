@@ -3,7 +3,7 @@ let icloud;          // 3D model
 
 function preload() {
   // Make sure the model path is correct, e.g., models/cloud.obj
-  icloud = loadModel('./models/icloud.obj', true);
+  icloud = loadModel('icloud.obj', true);
 }
 
 function setup() {
