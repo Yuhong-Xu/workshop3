@@ -42,7 +42,7 @@ function draw() {
   // image(cam.videoElement, 0, 0, width, height);
 
   // ① 触摸点亮火焰
-  if (touchIsDown && !lighterOn) {
+  if (touches.length > 0 && !lighterOn) {
     lighterOn = true;
     attention += 2;
   }
@@ -103,4 +103,3 @@ function flameBounce() {
   rotate(radians(random(-5, 5)));
   pop();
 }
-// trying uploading 2nd time
