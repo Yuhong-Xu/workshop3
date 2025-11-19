@@ -8,7 +8,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  describe('A model of a little cloud');
+  describe('A 3D model of a little cloud');
 }
 
 function draw() {
@@ -30,7 +30,7 @@ function draw() {
 // 绘制屏幕上方满意度条
 function drawSatisfactionBar() {
   push();
-  resetMatrix();
+  resetMatrix();  // 保证进度条在屏幕坐标
   noStroke();
   let barWidth = map(attention, 0, 20, 0, width * 0.8);
   if (attention < 13) fill(255, 180, 60);
@@ -39,13 +39,12 @@ function drawSatisfactionBar() {
   pop();
 }
 
-// 示例：点击画布增加满意度
+// 示例：点击或触摸画布增加满意度
 function mousePressed() {
   attention += 1;
   attention = constrain(attention, 0, 20);
 }
 
-// 支持触摸屏
 function touchStarted() {
   attention += 1;
   attention = constrain(attention, 0, 20);
