@@ -3,12 +3,12 @@ let icloud;          // 3D model
 
 function preload() {
   // Make sure the model path is correct, e.g., models/cloud.obj
-  icloud = loadModel('./models/cloud.obj', true);
+  icloud = loadModel('./models/icloud.obj', true);
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  describe('A 3D model of a little cloud');
+  describe('A 3D model of a little icloud');
 }
 
 function draw() {
