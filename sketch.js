@@ -1,41 +1,52 @@
-let attention = 0;
-let icloud;
-
+let attention = 0;   // 满意度
+let icloud;          // 3D 模型
 
 function preload() {
-  icloud = loadModel('/models/还不知道是啥.obj', true);
-  // 记住哈，还不知道是啥
+  // 确保模型路径正确，例如 models/cloud.obj
+  icloud = loadModel('./models/cloud.obj', true);
 }
+
 function setup() {
-  createCanvas(200, 200, WEBGL);
-  describe('A model of a icloud');
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  describe('A model of a little cloud');
 }
 
-function gotPoses(results) {
-  if (results.length > 0) pose = results[0].pose;
-}
-
-function draw(){
+function draw() {
   background(255);
- 
-  // Click and drag to look around the shape
+
+  // 鼠标或手指拖动旋转视角
   orbitControl();
- 
-  // This adds color to the model according to the angle of the surface
+
+  // 根据角度给模型颜色
   normalMaterial();
+
+  // 绘制 3D 模型
   model(icloud);
 
-  // “满意条” Satisfaction Bar
+  // 绘制满意度进度条
   drawSatisfactionBar();
 }
 
-
-
-// 角色可以看一下“小云朵”的心情态度。也就是“满意条”
+// 绘制屏幕上方满意度条
 function drawSatisfactionBar() {
-  let barWidth = map(attention, 0, 20, 0, width * 0.8);
+  push();
+  resetMatrix();
   noStroke();
+  let barWidth = map(attention, 0, 20, 0, width * 0.8);
   if (attention < 13) fill(255, 180, 60);
   else fill(255, 60, 60);
   rect(width * 0.1, 30, barWidth, 12, 8);
+  pop();
+}
+
+// 示例：点击画布增加满意度
+function mousePressed() {
+  attention += 1;
+  attention = constrain(attention, 0, 20);
+}
+
+// 支持触摸屏
+function touchStarted() {
+  attention += 1;
+  attention = constrain(attention, 0, 20);
 }
