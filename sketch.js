@@ -1,7 +1,7 @@
 let attention = 0;   // Satisfaction level
 let icloud;          // 3D model
 let mic;             // 麦克风
-let distanceZ = -200; // 初始距离（负值才能看到模型）
+let distanceZ = -200; // 初始距离（负值在摄像机前）
 
 function preload() {
   icloud = loadModel('icloud.obj', true);
@@ -19,37 +19,36 @@ function setup() {
 function draw() {
   background(255);
 
-  // 旋转模型
   orbitControl();
 
-  // 确保音频上下文在手机上被启用
+  // 手机必须点击一次才能启用音频
   if (getAudioContext().state !== 'running') {
     getAudioContext().resume();
   }
 
-  // 取得麦克风输入音量
+  // 获取麦克风音量
   let vol = mic.getLevel();
 
-  // 吹气推动云朵（越大声 → 跑越远）
+  // 吹气让云朵跑远（音量越大，移动越远）
   if (vol > 0.05) {
-    distanceZ -= vol * 50;   // 数值可调，越大越敏感
+    distanceZ -= vol * 50; // 可以调整数值控制移动速度
   }
 
-  // 材质
+  // 白色高光材质
   specularMaterial(255);
 
-  // 模型绘制（先 scale 再 model，保证放大）
+  // 绘制云朵模型
   push();
   translate(0, 0, distanceZ);
-  scale(5); // 放大模型
+  scale(5); // 放大模型，让手机上显示大一点
   model(icloud);
   pop();
 
-  // 绘制顶部 satisfaction 进度条
+  // 绘制 satisfaction 进度条
   drawSatisfactionBar();
 }
 
-// 顶部满意度进度条
+// 顶部 satisfaction 条
 function drawSatisfactionBar() {
   push();
   resetMatrix();
@@ -61,19 +60,15 @@ function drawSatisfactionBar() {
   pop();
 }
 
-// 点击或触摸增加 satisfaction
+// 点击增加 satisfaction
 function mousePressed() {
   attention = constrain(attention + 1, 0, 20);
-
-  // 手机 Safari 需要用户触摸后才能启用 mic
-  if (getAudioContext().state !== 'running') {
-    getAudioContext().resume();
-  }
 }
 
 function touchStarted() {
   attention = constrain(attention + 1, 0, 20);
 
+  // 手机 Safari 需要用户触摸才能启用 mic
   if (getAudioContext().state !== 'running') {
     getAudioContext().resume();
   }
