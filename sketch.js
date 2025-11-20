@@ -23,6 +23,8 @@ function draw() {
   // Draw 3D model
   model(icloud);
 
+  scale(5); 
+
   // Draw satisfaction progress bar
   drawSatisfactionBar();
 }
