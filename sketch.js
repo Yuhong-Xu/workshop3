@@ -1,64 +1,56 @@
+
+let attention = 0;   // Satisfaction level
 let icloud;          // 3D model
-let mic;             // 麦克风
-let distanceZ = -200; // 初始距离（负值在摄像机前）
-let micEnabled = false; // 麦克风是否启用
 
 function preload() {
+  // Make sure the model path is correct, e.g., models/cloud.obj
   icloud = loadModel('icloud.obj', true);
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  describe('Blow at the phone to push the cloud away');
-
-  // 创建麦克风对象，但不要立刻启动
-  mic = new p5.AudioIn();
+  describe('A 3D model of a little icloud');
 }
 
 function draw() {
   background(255);
 
+  // Rotate view with mouse or finger drag
   orbitControl();
 
-  // 只有麦克风启用后才读取音量
-  if (micEnabled) {
-    let vol = mic.getLevel();
+  // Add color to the model based on the surface angle
+  normalMaterial();
 
-    // 吹气让云朵跑远（音量越大，移动越远）
-    if (vol > 0.05) {
-      distanceZ -= vol * 50; // 可调节速度
-    }
-  }
 
-  // 白色高光材质
-  specularMaterial(255);
-
-  // 绘制云朵模型
-  push();
-  translate(0, 0, distanceZ);
-  scale(5); // 放大模型
+  scale(5); 
+  
+  // Draw 3D model
   model(icloud);
+
+  // Draw satisfaction progress bar
+  drawSatisfactionBar();
+}
+
+// Draw the satisfaction bar at the top of the screen
+function drawSatisfactionBar() {
+  push();
+  resetMatrix();  // Ensure the progress bar is in screen coordinates
+  noStroke();
+  let barWidth = map(attention, 0, 20, 0, width * 0.8);
+  if (attention < 13) fill(255, 180, 60);
+  else fill(255, 60, 60);
+  rect(width * 0.1, 30, barWidth, 12, 8);
   pop();
 }
 
-// 点击/触摸启用麦克风
+// Example: click or touch the canvas to increase satisfaction
 function mousePressed() {
-  enableMic();
+  attention += 1;
+  attention = constrain(attention, 0, 20);
 }
 
 function touchStarted() {
-  enableMic();
+  attention += 1;
+  attention = constrain(attention, 0, 20);
 }
 
-// 启用麦克风函数（手机必须点击一次）
-function enableMic() {
-  if (!micEnabled) {
-    mic.start();
-    micEnabled = true;
-
-    // 确保音频上下文激活（手机 Safari 必须）
-    if (getAudioContext().state !== 'running') {
-      getAudioContext().resume();
-    }
-  }
-}
