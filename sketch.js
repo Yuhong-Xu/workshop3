@@ -1,4 +1,3 @@
-let attention = 0;   // Satisfaction level
 let icloud;          // 3D model
 let mic;             // 麦克风
 let distanceZ = -200; // 初始距离（负值在摄像机前）
@@ -40,31 +39,14 @@ function draw() {
   scale(5); // 放大模型
   model(icloud);
   pop();
-
-  // 绘制 satisfaction 进度条
-  drawSatisfactionBar();
 }
 
-// 顶部 satisfaction 条
-function drawSatisfactionBar() {
-  push();
-  resetMatrix();
-  noStroke();
-  let barWidth = map(attention, 0, 20, 0, width * 0.8);
-  if (attention < 13) fill(255, 180, 60);
-  else fill(255, 60, 60);
-  rect(width * 0.1, 30, barWidth, 12, 8);
-  pop();
-}
-
-// 点击增加 satisfaction，同时启用麦克风
+// 点击/触摸启用麦克风
 function mousePressed() {
-  attention = constrain(attention + 1, 0, 20);
   enableMic();
 }
 
 function touchStarted() {
-  attention = constrain(attention + 1, 0, 20);
   enableMic();
 }
 
