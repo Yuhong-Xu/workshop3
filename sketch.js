@@ -1,9 +1,16 @@
 
+// =======================================================
+// ICLOUD IN YOUR PHONOE
+// icould is inviting you to destroy it. The more attention you give to it, 
+// the icloud will feel more satisfaction.
+// =======================================================
+
+
 let attention = 0;   // Satisfaction level
 let icloud;          // 3D model
 
 function preload() {
-  // Make sure the model path is correct, e.g., models/cloud.obj
+  // Make sure the model path is correct
   icloud = loadModel('icloud.obj', true);
 }
 
@@ -12,6 +19,7 @@ function setup() {
   describe('A 3D model of a little icloud');
 }
 
+// if audience want see left, 
 function draw() {
   background(255);
 
@@ -19,7 +27,7 @@ function draw() {
   orbitControl();
 
   // Add color to the model based on the surface angle
-  normalMaterial();
+  // normalMaterial();
 
 
   scale(5); 
