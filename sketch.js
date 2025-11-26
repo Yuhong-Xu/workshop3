@@ -11,7 +11,7 @@ let icloud;          // 3D model
 
 function preload() {
   // Make sure the model path is correct
-  icloud = loadModel('icloud.obj', true);
+  icloud = loadModel('Little icloud longing for attention.obj', true);
 }
 
 function setup() {
