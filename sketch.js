@@ -1,4 +1,3 @@
-
 // =======================================================
 // ICLOUD IN YOUR PHONOE
 // icould is inviting you to destroy it. The more attention you give to it, 
@@ -12,7 +11,7 @@ let monster;        // p5 play 的某个多眼monster围着icloud跳出来
 
 function preload() {
   // Make sure the model path is correct
-  icloud = loadModel('Little icloud longing for attention.obj', true);
+  icloud = loadModel('/models/Little icloud longing for attention.obj', true);
 }
 
 function setup() {
