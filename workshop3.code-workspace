@@ -1,10 +1,12 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"name": "Little icloud longing for attention",
+			"path": "../../Little icloud longing for attention"
 		},
 		{
-			"path": "../../Little icloud longing for attention"
+			"name": "workshop3",
+			"path": "."
 		}
 	],
 	"settings": {}
