@@ -11,15 +11,23 @@
   <script src="https://molleindustria.github.io/p5.play/lib/p5.play.js"></script>
 
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-    canvas {
-      display: block;
-    }
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    /* 背景图设定 */
+    background-image: url("更好的云朵背景.jpg");
+    background-size: cover;        /* 讓圖片自動放大填滿畫面 */
+    background-position: center;   /* 置中 */
+    background-repeat: no-repeat;  /* 不要重複 */
+  }
+
+  canvas {
+    display: block;
+  }
   </style>
+
 </head>
 <body>
   <script src="sketch.js"></script>

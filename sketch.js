@@ -19,46 +19,26 @@ function setup() {
   describe('A 3D model of a little icloud');
 }
 
-// if audience want see left, 
+// 这里应该有个可以触碰&拉拽的函数可被调用
 function draw() {
   background(255);
 
   // Rotate view with mouse or finger drag
   orbitControl();
 
-  // Add color to the model based on the surface angle
-  // normalMaterial();
-
-
   scale(5); 
   
-  // Draw 3D model
+  // This adds color to the model according to the angle of the surface
+  normalMaterial();
   model(icloud);
-
-  // Draw satisfaction progress bar
-  drawSatisfactionBar();
 }
 
-// Draw the satisfaction bar at the top of the screen
-function drawSatisfactionBar() {
-  push();
-  resetMatrix();  // Ensure the progress bar is in screen coordinates
-  noStroke();
-  let barWidth = map(attention, 0, 20, 0, width * 0.8);
-  if (attention < 13) fill(255, 180, 60);
-  else fill(255, 60, 60);
-  rect(width * 0.1, 30, barWidth, 12, 8);
-  pop();
-}
+// 这里应有个ML5的“抓手”的函数可被调用
 
-// Example: click or touch the canvas to increase satisfaction
-function mousePressed() {
-  attention += 1;
-  attention = constrain(attention, 0, 20);
-}
 
-function touchStarted() {
-  attention += 1;
-  attention = constrain(attention, 0, 20);
-}
+// 这里应有个p5.js的“对着话筒吹风”的函数可被调用
+
+
+
+
 
