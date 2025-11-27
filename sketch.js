@@ -11,7 +11,7 @@ let monster;        // p5 play 的某个多眼monster围着icloud跳出来
 
 function preload() {
   // Make sure the model path is correct
-  icloud = loadModel('/models/Little icloud longing for attention.obj', true);
+  icloud = loadModel('/little icloud models/good icloud.obj', true);
 }
 
 function setup() {
