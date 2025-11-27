@@ -19,7 +19,7 @@ function setup() {
   describe('A 3D model of a little icloud');
 }
 
-// 这里应该有个可以触碰&拉拽的函数可被调用
+// 【input1】这里应该有个可以触碰&拉拽的函数可被调用
 function draw() {
   background(255);
 
@@ -33,10 +33,18 @@ function draw() {
   model(icloud);
 }
 
-// 这里应有个ML5的“抓手”的函数可被调用
+// 这里应有个“试着用手凭空抓一下它” 的文字出现在屏幕上
+
+// 【input2】这里应有个ML5的“抓手”的函数可被调用
 
 
-// 这里应有个p5.js的“对着话筒吹风”的函数可被调用
+// 【input3】这里应有个p5.js的“对着话筒吹风”的函数可被调用
+
+
+// 这里应有个“云朵在跳跃“的feedback
+
+
+// 这里应有个“云朵旁边会有彩带蹦出来”的feedback
 
 
 
