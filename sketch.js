@@ -10,7 +10,7 @@ let icloud;          // 3D model
 
 function preload() {
   // Make sure the model path is correct
-  icloud = loadModel('/little_icloud_models/good_icloud.obj', true);
+  icloud = loadModel('good_icloud.obj', true);
 }
 
 function setup() {
@@ -41,7 +41,7 @@ function draw() {
 // 【input3】这里应有个p5.js的“对着话筒吹风”的函数可被调用
 
 
-// 【feedback1]这里应有个“云朵在跳跃“的feedback
+// 【feedback1】这里应有个“云朵在跳跃“的feedback
 
 
 // 【feedback2】这里应有个“云朵旁边会有彩带蹦出来”的feedback
