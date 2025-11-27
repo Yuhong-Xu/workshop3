@@ -23,7 +23,7 @@ function setup() {
 function draw() {
   background(255);
 
-  // Rotate view with mouse or finger drag
+  // Click and drag to look around the shape
   orbitControl();
 
   scale(5); 
