@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,11 +7,15 @@
   <title>icloud try</title>
 
   <!-- p5.js -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
+
   <!-- p5-play -->
+
   <script src="https://molleindustria.github.io/p5.play/lib/p5.play.js"></script>
 
   <!-- ML5 -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ml5/0.12.2/ml5.min.js"></script>
 
   <style>
@@ -30,23 +35,25 @@
       left: 0;
       z-index: 10;  /* 确保在背景图片上方 */
     }
-  
+
     #status { 
       position: absolute; 
-      top: 20px; 
+      top: 70%; 
       left: 50%; 
       transform: translateX(-50%); 
-      font-size: 24px; 
+      font-size: 28px; 
       font-family: sans-serif; 
-      color: #333; 
+      color: red; 
       text-align: center; 
       z-index: 20; /* 让文字在 canvas 上方 */
+      pointer-events: none; /* 不影响鼠标交互 */
+      line-height: 1.5;
     }
   </style>
-  
+
 </head>
 <body>
-  <!-- <button id="actionBtn" style="display:none;">Click on the screen</button> -->
+  <div id="status"></div>
   <script src="sketch.js"></script>
 </body>
 </html>
