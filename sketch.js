@@ -1,16 +1,16 @@
 let icloudImg;
-let state = "idle"; // idle / angry
-let lastInteraction = 0;
+let satisfaction = 0; // 满意度 0~100
+let mic, micStarted = false;
+
 let angryText = [
 "Come and hit me. I really need your attention.",
 "Attack me again! Why don't you keep attention on me?"
 ];
-let angryTimeout = 7000; // 7秒没互动就生气
-let startTime;
-let statusDiv;
 
-let satisfaction = 0; // 满意度 0~100
-let mic, micStarted = false;
+let startTime;
+let lastInteraction = 0;
+let angryTimeout = 7000; // 7秒没互动触发生气
+let hintDiv, statusDiv;
 
 function preload() {
 icloudImg = loadImage("icloud.png");
@@ -19,46 +19,58 @@ icloudImg = loadImage("icloud.png");
 function setup() {
 createCanvas(windowWidth, windowHeight);
 imageMode(CENTER);
-statusDiv = document.getElementById("status");
-lastInteraction = millis();
+
 startTime = millis();
+lastInteraction = millis();
+
+hintDiv = document.getElementById("hint");
+statusDiv = document.getElementById("status");
 
 textAlign(CENTER, CENTER);
 textSize(24);
-fill(255);
 }
 
 function draw() {
-background(0, 0, 0, 0); // 保持透明
+background(0, 0, 0, 0);
 
 // 显示云朵
-if (state === "idle") {
 image(icloudImg, width / 2, height / 2, 200, 200);
-statusDiv.innerText = "";
-} else if (state === "angry") {
-let offsetX = random(-5, 5);
-let offsetY = random(-5, 5);
-image(icloudImg, width / 2 + offsetX, height / 2 + offsetY, 200, 200);
-statusDiv.innerText = angryText.join("\n");
-}
 
-// 显示满意度条
+// 满意度条
 drawSatisfactionBar();
 
-// 超过一定时间没互动就生气
-if (millis() - lastInteraction > angryTimeout) {
-state = "angry";
-}
-
-// 如果麦克风启动了，根据声音提高满意度
+// 检测麦克风音量
 if (micStarted) {
 let vol = mic.getLevel();
-if (vol > 0.05) { // 吹气音量阈值，可调
-satisfaction += vol * 5;
+if (vol > 0.05) { // 吹气阈值
+satisfaction += vol * 10; // 吹气增加满意度
 satisfaction = constrain(satisfaction, 0, 100);
 lastInteraction = millis();
-state = "idle";
 }
+}
+
+// 点击或吹气超过 7 秒没操作显示生气文字
+if (millis() - lastInteraction > angryTimeout) {
+if (satisfaction < 50) {
+statusDiv.innerText = angryText.join("\n");
+statusDiv.style.color = "red";
+} else if (satisfaction < 100) {
+statusDiv.innerText = "Please, just make me happy!";
+statusDiv.style.color = "lime";
+}
+} else {
+if (satisfaction >= 50 && satisfaction < 100) {
+statusDiv.innerText = "Please, just make me happy!";
+statusDiv.style.color = "lime";
+} else if (satisfaction < 50) {
+statusDiv.innerText = "";
+}
+}
+
+// 满意度达到 100%
+if (satisfaction >= 100) {
+statusDiv.innerText = "Thank you!";
+statusDiv.style.color = "yellow";
 }
 
 // 2分钟后停止交互
@@ -68,14 +80,19 @@ noLoop();
 }
 
 function mousePressed() {
+lastInteraction = millis();
+
+// 首次点击启动麦克风
 if (!micStarted) {
-// 第一次点击启动麦克风
 mic = new p5.AudioIn();
 mic.start();
 micStarted = true;
+hintDiv.style.display = "none";
 }
-lastInteraction = millis();
-state = "idle";
+
+// 点击增加满意度
+satisfaction += 2;
+satisfaction = constrain(satisfaction, 0, 100);
 }
 
 function drawSatisfactionBar() {
