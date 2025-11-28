@@ -14,19 +14,36 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ml5/0.12.2/ml5.min.js"></script>
 
   <style>
-    /* 全屏背景图片 */
-    body {
-  margin: 0;
-  height: 100vh; /* 新增 */
-  background-image: url("更好的云朵背景来了.jpg");
-  background-size: 100% 100%; /* 修改：强制拉伸 */
-  background-position: center;
-}
-
+    body { 
+      margin: 0; 
+      overflow: hidden; 
+      background-image: url("更好的云朵背景来了.jpg"); 
+      background-size: cover; 
+      background-position: center; 
+      height: 100vh;
+    }
+  
     canvas {
       display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;  /* 确保在背景图片上方 */
+    }
+  
+    #status { 
+      position: absolute; 
+      top: 20px; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      font-size: 24px; 
+      font-family: sans-serif; 
+      color: #333; 
+      text-align: center; 
+      z-index: 20; /* 让文字在 canvas 上方 */
     }
   </style>
+  
 </head>
 <body>
   <button id="actionBtn" style="display:none;">Click on the screen</button>
