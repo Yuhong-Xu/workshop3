@@ -3,7 +3,7 @@ let satisfaction = 0; // 满意度 0~100
 let mic, micStarted = false;
 
 function preload() {
-icloudImg = loadImage("icloud.png");
+icloudImg = loadImage("icloud.png"); // 第四次尝试
 }
 
 function setup() {
