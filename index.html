@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>icloud try</title>
+  <title>iCloud Satisfaction</title>
 
   <!-- p5.js -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
 
-  <!-- p5-play -->
+  <!-- p5.play (你可以保留，如果不需要动画也可删除) -->
 
   <script src="https://molleindustria.github.io/p5.play/lib/p5.play.js"></script>
 
@@ -26,6 +26,7 @@
       background-size: cover; 
       background-position: center; 
       height: 100vh;
+      font-family: sans-serif;
     }
   
     canvas {
@@ -42,18 +43,30 @@
       left: 50%; 
       transform: translateX(-50%); 
       font-size: 28px; 
-      font-family: sans-serif; 
       color: red; 
       text-align: center; 
-      z-index: 20; /* 让文字在 canvas 上方 */
-      pointer-events: none; /* 不影响鼠标交互 */
+      z-index: 20; /* 文字在 canvas 上方 */
+      pointer-events: none;
       line-height: 1.5;
+    }
+
+    #hint {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: white;
+      text-align: center;
+      z-index: 20;
+      pointer-events: none;
     }
   </style>
 
 </head>
 <body>
   <div id="status"></div>
+  <div id="hint">Click the screen to start interacting!</div>
   <script src="sketch.js"></script>
 </body>
 </html>
