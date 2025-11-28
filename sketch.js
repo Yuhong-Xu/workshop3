@@ -144,7 +144,7 @@ function draw() {
   let yMove = sin(frameCount * 0.05) * 10 + grabBoost;
   translate(0, yMove, 0);
 
-  scale(5);
+  // scale(5);
   normalMaterial();
   model(icloud);
 
